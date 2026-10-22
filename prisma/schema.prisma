@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Course {
+  id          Int      @id @default(autoincrement())
+  title       String
+  category    String   @default("Licenciatura")
+  mode        String   @default("Presencial")
+  description String
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+}
+
+model News {
+  id          Int      @id @default(autoincrement())
+  title       String
+  excerpt     String
+  content     String
+  imageUrl    String?
+  published   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+}
+
+model Application {
+  id        Int      @id @default(autoincrement())
+  fullName  String
+  email     String
+  phone     String
+  course    String
+  message   String?
+  status    String   @default("Nova")
+  createdAt DateTime @default(now())
+}
